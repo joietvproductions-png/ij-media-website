@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (min-width: 768px) {
+  body, button, a {
+    cursor: none !important;
+  }
+}
+
+:root {
+  --rose: #bc2076;
+  --violet: #32021f;
+  --frost: #e4e8f7;
+  --cerulean: #1282a2;
+  --pitch: #131301;
+  --soft: #f6f6f6;
+  --card-bg: #1f0214;
+  --muted-bg: #2a0118;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--violet);
+  color: var(--soft);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.font-serif-italic {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-hotRose text-softWhite px-7 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-hotRose/30 hover:scale-[1.02] active:scale-95 inline-flex items-center justify-center gap-2;
+  }
+  .btn-outline {
+    @apply border border-softWhite/20 bg-white/5 backdrop-blur-sm text-softWhite px-7 py-3 rounded-full font-medium transition-all duration-300 hover:bg-white/10 hover:border-softWhite/40 active:scale-95 inline-flex items-center justify-center gap-2;
+  }
+  .card-hover {
+    @apply transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_60px_-10px_rgba(18,130,162,0.45)];
+  }
+  .section-label {
+    @apply text-cerulean uppercase tracking-[0.3em] text-xs font-semibold mb-4;
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background: linear-gradient(180deg, rgba(50,2,31,0.4) 0%, rgba(50,2,31,0.85) 70%, rgba(50,2,31,1) 100%);
+  }
+  .gradient-card {
+    background: linear-gradient(180deg, transparent 0%, rgba(50,2,31,0.95) 100%);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--violet);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rose);
+  border-radius: 10px;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.33%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Animated Gradient Background */
+.gradient-bg-animated {
+  background: linear-gradient(135deg, #32021f, #bc2076, #1282a2, #32021f);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(188, 32, 118, 0.3);
+}
+
+/* Noise/Grain Texture Overlay */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
