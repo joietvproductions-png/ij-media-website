@@ -152,3 +152,32 @@ h1, h2, h3, h4, h5, h6 {
 .animate-float {
   animation: float ease-in-out infinite;
 }
+
+/* Ken Burns — Slow Pan Effect */
+@keyframes slowPan {
+  0% {
+    transform: scale(1.15) translate(0%, 0%);
+  }
+  33% {
+    transform: scale(1.2) translate(-3%, -2%);
+  }
+  66% {
+    transform: scale(1.15) translate(2%, -1%);
+  }
+  100% {
+    transform: scale(1.15) translate(0%, 0%);
+  }
+}
+
+.animate-slow-pan {
+  animation: slowPan 20s ease-in-out infinite;
+}
+
+/* Hide Scrollbar for Horizontal Sections */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

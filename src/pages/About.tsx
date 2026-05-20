@@ -5,6 +5,7 @@ import StackSection from '../components/StackSection';
 import PageTransition from '../components/PageTransition';
 import Particles from '../components/Particles';
 import AnimatedText from '../components/AnimatedText';
+import MagneticButton from '../components/MagneticButton';
 
 
 const About = () => {
@@ -170,9 +171,12 @@ const About = () => {
                 className="text-4xl md:text-6xl font-syne font-bold leading-tight"
               />
             </div>
-            <Link to="/contact" className="btn-primary whitespace-nowrap text-base">
-              Partner With Us <ArrowRight size={16} />
-            </Link>
+            {/* ✨ Magnetic Button */}
+            <MagneticButton as="div" strength={0.4}>
+              <Link to="/contact" className="btn-primary whitespace-nowrap text-base">
+                Partner With Us <ArrowRight size={16} />
+              </Link>
+            </MagneticButton>
           </div>
         </StackSection>
       </div>

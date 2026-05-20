@@ -6,6 +6,7 @@ import StackSection from '../components/StackSection';
 import PageTransition from '../components/PageTransition';
 import Particles from '../components/Particles';
 import AnimatedText from '../components/AnimatedText';
+import MagneticButton from '../components/MagneticButton';
 
 const Works = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -66,16 +67,21 @@ const Works = () => {
                 Stories that move minds, shift culture, and demand action.
               </motion.p>
 
-              <motion.button
+              {/* ✨ Magnetic Watch Showreel Button */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4 }}
-                onClick={() => setIsVideoOpen(true)}
-                className="group inline-flex items-center gap-4 bg-hotRose text-softWhite pl-2 pr-6 py-2 rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg shadow-hotRose/30"
               >
-                <span className="w-12 h-12 bg-softWhite rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play size={20} className="text-hotRose ml-0.5" fill="currentColor" />
-                </span>
-                Watch Our Showreel
-              </motion.button>
+                <MagneticButton 
+                  onClick={() => setIsVideoOpen(true)}
+                  className="group inline-flex items-center gap-4 bg-hotRose text-softWhite pl-2 pr-6 py-2 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-hotRose/30"
+                  strength={0.4}
+                >
+                  <span className="w-12 h-12 bg-softWhite rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={20} className="text-hotRose ml-0.5" fill="currentColor" />
+                  </span>
+                  Watch Our Showreel
+                </MagneticButton>
+              </motion.div>
             </div>
           </div>
         </StackSection>
@@ -217,17 +223,25 @@ const Works = () => {
                 className="text-4xl md:text-6xl font-syne font-bold"
               />
             </div>
-            <div className="flex gap-6 overflow-x-auto px-6 pb-6 scrollbar-hide">
-              {btsImages.map((img, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="flex-shrink-0 w-[400px] h-[280px] rounded-3xl overflow-hidden cursor-pointer"
-                >
-                  <img src={img} alt={`BTS ${i+1}`} loading="lazy" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
-                </motion.div>
-              ))}
-            </div>
+                  <div className="flex gap-6 overflow-x-auto px-6 pb-6 scrollbar-hide">
+            {btsImages.map((img, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="flex-shrink-0 w-[400px] h-[280px] rounded-3xl overflow-hidden cursor-pointer group"
+              >
+                <img 
+                  src={img} 
+                  alt={`BTS ${i+1}`} 
+                  loading="lazy" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-700 animate-slow-pan"
+                  style={{
+                    animationDelay: `${i * -5}s`,
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
           </div>
         </StackSection>
 
@@ -243,9 +257,12 @@ const Works = () => {
                 className="text-4xl md:text-6xl font-syne font-bold leading-tight"
               />
             </div>
-            <Link to="/contact" className="bg-pitchBlack text-softWhite px-8 py-4 rounded-full font-semibold hover:bg-midnightViolet transition-all inline-flex items-center gap-2 whitespace-nowrap">
-              Let's Talk <ArrowRight size={16} />
-            </Link>
+            {/* ✨ Magnetic CTA Button */}
+            <MagneticButton as="div" strength={0.5}>
+              <Link to="/contact" className="bg-pitchBlack text-softWhite px-8 py-4 rounded-full font-semibold hover:bg-midnightViolet transition-all inline-flex items-center gap-2 whitespace-nowrap">
+                Let's Talk <ArrowRight size={16} />
+              </Link>
+            </MagneticButton>
           </div>
         </StackSection>
 

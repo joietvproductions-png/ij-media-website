@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Works from './pages/Works';
@@ -11,6 +12,7 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Loader />
       <CustomCursor />
       <Navbar />

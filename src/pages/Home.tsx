@@ -6,6 +6,7 @@ import Counter from '../components/Counter';
 import PageTransition from '../components/PageTransition';
 import Particles from '../components/Particles';
 import AnimatedText from '../components/AnimatedText';
+import MagneticButton from '../components/MagneticButton';
 
 const Home = () => {
   const featuredProjects = [
@@ -32,11 +33,38 @@ const Home = () => {
   return (
     <PageTransition>
       <div className="overflow-x-hidden">
-        {/* Hero — gradient animated background */}
+        {/* Hero — gradient animated background with custom image */}
         <StackSection index={0} total={totalSections} bgColor="gradient-bg-animated grain relative">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1604431696980-07e518647c95?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-midnightViolet/40 to-midnightViolet" />
+          {/* 🖼️ Your Nigeria image - behind the gradient */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: "url('/hero.jpg')",
+              opacity: 0.4
+            }}
+          />
+          {/* Dark gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-midnightViolet/70 via-midnightViolet/60 to-midnightViolet" />
+          
           <Particles count={40} color="bg-hotRose" />
+
+          {/* 🔴 REC Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.2 }}
+            className="absolute top-8 right-8 z-20 flex items-center gap-2"
+          >
+            <motion.span
+              animate={{ opacity: [1, 0.2, 1] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-2.5 h-2.5 rounded-full bg-hotRose block"
+            />
+            <span className="text-softWhite/70 text-xs tracking-[0.25em] font-dmSans font-semibold uppercase">
+              REC
+            </span>
+          </motion.div>
+          
           <div className="relative z-10 flex items-center justify-center min-h-screen">
             <div className="container mx-auto px-6 text-center max-w-5xl">
               <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="section-label">
@@ -57,16 +85,19 @@ const Home = () => {
               >
                 We craft high-impact documentaries that challenge narratives and drive social change.
               </motion.p>
+              
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }}
                 className="flex flex-col md:flex-row gap-4 justify-center"
               >
-                <button className="btn-outline">
+                <MagneticButton className="btn-outline" strength={0.3}>
                   <Play size={16} /> Watch Showreel
-                </button>
-                <Link to="/contact" className="btn-primary">
-                  Partner With Us <ArrowRight size={16} />
-                </Link>
+                </MagneticButton>
+                <MagneticButton as="div" strength={0.3}>
+                  <Link to="/contact" className="btn-primary">
+                    Partner With Us <ArrowRight size={16} />
+                  </Link>
+                </MagneticButton>
               </motion.div>
             </div>
           </div>
@@ -95,7 +126,14 @@ const Home = () => {
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer card-hover"
                 >
-                  <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    loading="lazy"
+                    width="800"
+                    height="600"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
                   <div className="absolute inset-0 gradient-card" />
                   <div className="absolute bottom-0 left-0 p-8">
                     <p className="text-cerulean text-xs tracking-[0.2em] font-semibold mb-2">{project.category}</p>
